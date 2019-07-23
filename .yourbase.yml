@@ -15,9 +15,9 @@ build_targets:
       - pip install --upgrade --ignore-installed -r requirements_testing.txt     
       - pip install .
       - pip install -r requirements_optional.txt
-      - python -m pytest dit
+      #- python -m pytest dit
       #  sudo $TRAVIS_PYTHON_VERSION -m pytest -m "not cython" dit;
-      - pytest --numprocesses=auto dit;
+      - pytest --numprocesses=auto dit
       # pytest -m "not cython" --numprocesses=auto dit;
       #- cp .coverage $TRAVIS_BUILD_DIR
       #- cd $TRAVIS_BUILD_DIR
