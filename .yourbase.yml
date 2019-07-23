@@ -1,7 +1,6 @@
 dependencies:
   build:
-    - python:3.6.3
-    - anaconda3:4.3.30
+    - anaconda3:latest
 
 build_targets:
   - name: python36
@@ -9,14 +8,11 @@ build_targets:
       - OPTIONAL_DEPS=true 
       - TRAVIS_PYTHON_VERSION="3.6"
     commands:
-      - conda install pip numpy Cython
-      #- source activate test-environment
+      - conda install pip numpy Cython python=3.6
       - conda install scipy cvxopt
       - pip install --upgrade --ignore-installed -r requirements_testing.txt     
       - pip install .
       - pip install -r requirements_optional.txt
-      #- python -m pytest dit
-      #  sudo $TRAVIS_PYTHON_VERSION -m pytest -m "not cython" dit;
       - pytest --numprocesses=auto dit
       # pytest -m "not cython" --numprocesses=auto dit;
       #- cp .coverage $TRAVIS_BUILD_DIR
