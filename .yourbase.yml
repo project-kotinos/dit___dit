@@ -3,6 +3,15 @@ dependencies:
     - anaconda3:latest
 
 build_targets:
+  - name: python35
+    commands:
+      - conda install pip numpy Cython python=3.5
+      - conda install scipy cvxopt
+      - pip install --upgrade --ignore-installed -r requirements_testing.txt     
+      - pip install .
+      - pip install -r requirements_optional.txt
+      - pytest --numprocesses=auto dit
+
   - name: python36
     commands:
       - conda install pip numpy Cython python=3.6
@@ -11,11 +20,16 @@ build_targets:
       - pip install .
       - pip install -r requirements_optional.txt
       - pytest --numprocesses=auto dit
-      # pytest -m "not cython" --numprocesses=auto dit;
-      #- cp .coverage $TRAVIS_BUILD_DIR
-      #- cd $TRAVIS_BUILD_DIR
-      #- python fixcoverage.py ".*/dit/" "$TRAVIS_BUILD_DIR/dit/"
-      #- codecov
+      
+  - name: python37
+    commands:
+      - conda install pip numpy Cython python=3.7
+      - conda install scipy cvxopt
+      - pip install --upgrade --ignore-installed -r requirements_testing.txt     
+      - pip install .
+      - pip install -r requirements_optional.txt
+      - pytest --numprocesses=auto dit    
+      
   - name: python27
     commands:
       - conda install pip numpy Cython python=2.7
@@ -27,8 +41,12 @@ build_targets:
       
 ci:
   builds:
+    - name: python37
+      build_target: python37
     - name: python36
       build_target: python36
-   
+    - name: python35
+      build_target: python35
     - name: python27
       build_target: python27
+      
