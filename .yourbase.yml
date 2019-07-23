@@ -10,7 +10,7 @@ build_targets:
       - TRAVIS_PYTHON_VERSION="3.6"
     commands:
       - conda install pip numpy Cython
-      - source activate test-environment
+      #- source activate test-environment
       - conda install scipy cvxopt
       - pip install --upgrade --ignore-installed -r requirements_testing.txt     
       - pip install .
