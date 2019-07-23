@@ -4,9 +4,6 @@ dependencies:
 
 build_targets:
   - name: python36
-    environment: 
-      - OPTIONAL_DEPS=true 
-      - TRAVIS_PYTHON_VERSION="3.6"
     commands:
       - conda install pip numpy Cython python=3.6
       - conda install scipy cvxopt
@@ -19,9 +16,19 @@ build_targets:
       #- cd $TRAVIS_BUILD_DIR
       #- python fixcoverage.py ".*/dit/" "$TRAVIS_BUILD_DIR/dit/"
       #- codecov
+  - name: python27
+    commands:
+      - conda install pip numpy Cython python=2.7
+      - conda install scipy cvxopt
+      - pip install --upgrade --ignore-installed -r requirements_testing.txt     
+      - pip install .
+      - pip install -r requirements_optional.txt
+      - pytest --numprocesses=auto dit
       
 ci:
   builds:
     - name: python36
       build_target: python36
    
+    - name: python27
+      build_target: python27
