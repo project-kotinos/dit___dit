@@ -1,13 +1,13 @@
 dependencies:
   build:
-    - python:3.7.0
+    - python:3.6.3
     - anaconda3:4.3.0
 
 build_targets:
-  - name: python37
+  - name: python36
     environment: 
       - OPTIONAL_DEPS=true 
-      - TRAVIS_PYTHON_VERSION="3.7"
+      - TRAVIS_PYTHON_VERSION="3.6"
     commands:
       - conda install pip numpy Cython
       - source activate test-environment
@@ -26,6 +26,6 @@ build_targets:
       
 ci:
   builds:
-    - name: python37
-      build_target: python37
+    - name: python36
+      build_target: python36
    
